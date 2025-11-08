@@ -91,6 +91,8 @@ return [
         'PhanUnreferencedProtectedProperty',
         'PhanUnusedVariableValueOfForeachWithKey',
         'PhanNonClassMethodCall',
+        'PhanUnreferencedPHPDocProperty',
+        'PhanUnreferencedClass',
     ],
 
     // A list of directories that should be parsed for class and

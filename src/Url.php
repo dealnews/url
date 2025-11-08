@@ -11,14 +11,14 @@ use DealNews\Url\Exception\Parse;
  * @copyright   1997-Present DealNews
  * @package     DealNews\Url
  *
- * @property string scheme    Scheme (e.g. http)
- * @property string host      Host
- * @property int    port      Port
- * @property string user      Username
- * @property string pass      Password
- * @property string path      URL Path
- * @property string query     Query string
- * @property string fragment  Hash fragment
+ * @property string $scheme    Scheme (e.g. http)
+ * @property string $host      Host
+ * @property int    $port      Port
+ * @property string $user      Username
+ * @property string $pass      Password
+ * @property string $path      URL Path
+ * @property string $query     Query string
+ * @property string $fragment  Hash fragment
  */
 class Url {
 
@@ -197,7 +197,6 @@ class Url {
      * @return bool
      */
     public function parse(string $url, bool $reset_data = true, ?string $query_separator = null): bool {
-        $success = true;
         if ($reset_data) {
             $this->data                    = $this::EMPTY_DATA;
             $this->data['query_separator'] = $query_separator ?? $this->data['query_separator'];
@@ -213,7 +212,7 @@ class Url {
             $url_parts['query'] = $this->fixEncoding($url_parts['query']);
         }
 
-        if ($url_parts !== false && is_array($url_parts)) {
+        if (is_array($url_parts)) {
             $success = true;
             foreach ($url_parts as $part => $value) {
                 if (!empty($value)) {
@@ -446,6 +445,8 @@ class Url {
      * @param string ...$url2 string
      *
      * @return string
+     *
+     * @phan-suppress PhanUnusedPublicNoOverrideMethodParameter
      */
     public function merge(string $url1, string ...$url2): string {
         $current_data         = $this->data;
